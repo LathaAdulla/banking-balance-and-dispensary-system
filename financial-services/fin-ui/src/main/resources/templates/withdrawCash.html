@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="https://www.thymeleaf.org">
+<th:body class="hold-transition skin-blue fixed sidebar-mini fuelux">
+<div class="wrapper">
+
+    <!-- Content Wrapper. Contains page content -->
+    <div class="content-wrapper">
+        <div  th:if="${errorMessage} != null" class="alert alert-danger">
+            <button type="button" class="close" data-dismiss="alert" aria-hidden="true">x</button>
+            <span th:text="${errorMessage}"/> </div>
+
+        <!-- Content Header (Page header) -->
+        <div class="content-header"><h1>Withdraw Cash</h1></div>
+        <!-- Main content -->
+        <div class="content">
+            <div class="row">
+                <div class="col-xs-12">
+                    <div class="box box-primary">
+                        <form role="form" method="post" th:action="@{/withdrawCash}">
+                            <div class="box-body">
+                                <div th:class="form-group">
+                                    <label> <strong>Select Client* : </strong></label>
+                                    <select required="true" id="clientId" data-placeholder="Choose One..."
+                                            class="selectpicker form-control" name="clientId">
+                                        <option value="">Choose One...</option>
+                                        <option th:each="item : ${clients}"
+                                                th:value="${item.clientId}" th:selected="${item.clientId == clientId}"
+                                                th:text="${item.getName() + ' ' + item.getSurname()}">Wireframe
+                                        </option>
+                                    </select>
+                                </div>
+                                <div th:class="form-group" th:hidden="${clientAccounts == null}">
+                                    <label> <strong>Select Account* : </strong></label>
+                                    <select th:required="${clientAccounts != null}" id="accountId" data-placeholder="Choose One..."
+                                            class="selectpicker form-control"  name="accountId">
+                                        <option value="">Choose One...</option >
+                                        <option th:each="item : ${clientAccounts}"
+                                                th:value="${item.clientAccountNumber}" th:selected="${item.clientAccountNumber == accountNumber}"
+                                                th:text="${item.clientAccountNumber}">Wireframe
+                                        </option>
+                                    </select>
+                                </div>
+                                <div th:class="form-group" th:hidden="${accountNumber == null}">
+                                    <label> <strong>Amount* : </strong></label>
+                                    <input type="number" th:required="${accountNumber != null}" id="amount" name="amount" th:value="${amount}"  >
+                                </div>
+                                <div th:class="form-group" th:hidden="${amount == null}">
+                                    <label> <strong>Select ATM* : </strong></label>
+                                    <select th:required="${amount != null}" id="atmId" data-placeholder="Choose One..."
+                                            class="selectpicker form-control" th:selected="${atmId}" name="atmId">
+                                        <option value="">Choose One...</option >
+                                        <option th:each="item : ${atm}"
+                                                th:value="${item.atmId}" th:selected="${item.atmId == atmId}"
+                                                th:text="${item.name}">Wireframe
+                                        </option>
+                                    </select>
+                                </div>
+                                <div class="form-group">
+                                    <button type="submit" class="box-title btn btn-primary" title="Submit">Submit
+                                    </button>
+                                    <a th:href="|/fin-ui/home|" type="button" class="close" id="close-asset" aria-hidden="true">Back</a>
+                                </div>
+                            </div>
+                        </form>
+                    </div> <!-- box box-primary -->
+                </div> <!--col-xs-12 -->
+
+            </div>
+
+        </div>
+    </div>
+</div>
+
+</th:body>
+</html>

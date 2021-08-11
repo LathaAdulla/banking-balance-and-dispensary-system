@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="https://www.thymeleaf.org">
+<th:body class="hold-transition skin-blue fixed sidebar-mini fuelux">
+<div class="wrapper">
+
+    <!-- Content Wrapper. Contains page content -->
+    <div class="content-wrapper">
+        <!-- Content Header (Page header) -->
+        <div class="content-header"><h1>Withdraw Amount Details</h1></div>
+        <!-- Main content -->
+        <!-- Main content -->
+        <div class="content">
+            <div class="row">
+                <div class="col-xs-12">
+                    <div class="box box-primary">
+
+                        <div class="box-body">
+
+                            <div class="table-responsive">
+                                <table class="table table-bordered table-hover">
+                                    <thead>
+                                    <tr>
+                                        <th>Account Number</th>
+                                        <th>Withdrawn Amount</th>
+                                        <th>ATM Location</th>
+                                        <th>Denomination Type</th>
+                                        <th>Coins/Note Count</th>
+                                        <th>Denomination Value</th>
+                                        <th>Denomination Total Value</th>
+                                    </tr>
+                                    </thead>
+                                    <tbody>
+                                    <tr th:each="withdraw : ${withdrawCashModels}">
+                                        <td><span th:text="|${withdraw.accountNumber}|"/></td>
+                                        <td><span th:text="|${withdraw.amount}|"/></td>
+                                        <td><span th:text="|${withdraw.atmLocation}|"/></td>
+                                        <td><span th:text="|${withdraw.denomination.denominationType.description}|"/></td>
+                                        <td><span th:text="|${withdraw.count}|"/></td>
+                                        <td><span th:text="|${withdraw.denomination.value}|"/></td>
+                                        <td><span th:text="|${withdraw.withDrawingAmount}|"/></td>
+                                    </tr>
+                                    </tbody>
+                                </table>
+                            </div> <!-- table-responsive -->
+                        </div> <!-- box-body-->
+
+                    </div> <!-- box box-primary -->
+                </div> <!--col-xs-12 -->
+            </div><!-- row-->
+        </div><!-- content-->
+    </div>
+</div>
+
+</th:body>
+</html>

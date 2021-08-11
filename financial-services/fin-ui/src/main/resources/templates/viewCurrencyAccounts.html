@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="https://www.thymeleaf.org">
+<th:body class="hold-transition skin-blue fixed sidebar-mini fuelux">
+<div class="wrapper">
+
+    <!-- Content Wrapper. Contains page content -->
+    <div class="content-wrapper">
+        <!-- Content Header (Page header) -->
+        <div class="content-header"><h1>Currency Account Balances</h1></div>
+        <!-- Main content -->
+        <!-- Main content -->
+        <div class="content">
+            <div class="row">
+                <div class="col-xs-12">
+                    <div class="box box-primary">
+
+                        <div class="box-body">
+                            <div class="table-responsive">
+                                <table class="table table-bordered table-hover">
+                                    <thead>
+                                    <tr>
+                                        <th>Account Number</th>
+                                        <th>Currency</th>
+                                        <th>Currency Balance</th>
+                                        <th>Conversion Rate</th>
+                                        <th>ZAR Amount</th>
+                                    </tr>
+                                    </thead>
+                                    <tbody>
+                                    <tr th:each="currencyConversion : ${currencyConversions}">
+                                        <td><span th:text="|${currencyConversion.clientAccountNumber}|"/></td>
+                                        <td><span th:text="|${currencyConversion.currencyCode}|"/></td>
+                                        <td><span th:text="|${#numbers.formatDecimal(currencyConversion.currencyBalance, 2, currencyConversion.decimalPlaces)}|"/></td>
+                                        <td><span th:text="|${#numbers.formatDecimal(currencyConversion.conversionRate, 2, currencyConversion.decimalPlaces)}|"/></td>
+                                        <td><span th:text="|${#numbers.formatDecimal(currencyConversion.convertedZARAmount, 2, currencyConversion.decimalPlaces)}|"/></td>
+                                    </tr>
+                                    </tbody>
+                                </table>
+                            </div> <!-- table-responsive -->
+                        </div> <!-- box-body-->
+
+                    </div> <!-- box box-primary -->
+                </div> <!--col-xs-12 -->
+            </div><!-- row-->
+        </div><!-- content-->
+    </div>
+</div>
+
+</th:body>
+</html>
